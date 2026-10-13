@@ -1,0 +1,435 @@
+@import "https://api.fontshare.com/v2/css?f[]=chillax@300,400,500,600,700&display=swap";
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Chillax", sans-serif;
+  --color-clay-bg: #ebf2f8;
+  --color-brand-primary: #2b76b9;
+  --color-brand-emerald: #3ba97a;
+  --color-brand-muted: #94a3b8;
+}
+
+body {
+  background-color: #ebf2f8;
+  color: #1e293b;
+  font-family: var(--font-sans);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+/* Dark Mode Body */
+.dark body {
+  background-color: #0f1620;
+  color: #e2e8f0;
+}
+
+@layer utilities {
+  /* ==========================================
+     LIGHT MODE CLAYMORPHISM
+     ========================================== */
+
+  /* Card Utama */
+  .clay-card {
+    background-color: #ebf2f8;
+    box-shadow:
+      0 14px 28px -6px rgba(160, 175, 195, 0.45),
+      0 4px 10px -2px rgba(160, 175, 195, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.9);
+  }
+
+  /* Inset / Input Box */
+  .clay-inset {
+    background-color: #e1ecf5;
+    box-shadow:
+      inset 3px 3px 6px rgba(150, 165, 185, 0.4),
+      inset -3px -3px 6px rgba(255, 255, 255, 0.9);
+  }
+
+  /* Block Gradient & Badges */
+  .clay-block-mint {
+    background: linear-gradient(180deg, #dcf5e6 0%, #c6edd8 100%);
+    box-shadow:
+      0 12px 22px -4px rgba(120, 180, 145, 0.45),
+      0 4px 8px -2px rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    color: #114b2b;
+  }
+
+  .clay-block-amber {
+    background: linear-gradient(180deg, #fdf0d2 0%, #fbe1a6 100%);
+    box-shadow:
+      0 12px 22px -4px rgba(200, 155, 60, 0.45),
+      0 4px 8px -2px rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    color: #7a4a0a;
+  }
+
+  .clay-block-sky {
+    background: linear-gradient(180deg, #dcf1fe 0%, #c6e4fa 100%);
+    box-shadow:
+      0 12px 22px -4px rgba(135, 175, 210, 0.45),
+      0 4px 8px -2px rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    color: #13456c;
+  }
+
+  .clay-block-ocean {
+    background: linear-gradient(180deg, #3283c8 0%, #2368a5 100%);
+    box-shadow:
+      0 12px 22px -4px rgba(35, 95, 150, 0.4),
+      0 4px 8px -2px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+  }
+
+  .clay-block-alpha {
+    background: linear-gradient(180deg, #fbe1e4 0%, #f5c9cf 100%);
+    box-shadow:
+      0 12px 22px -4px rgba(200, 120, 135, 0.4),
+      0 4px 8px -2px rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    color: #7a1f2b;
+  }
+
+  /* Status Badges */
+  .clay-status-tetap {
+    background-color: #e1ecf5;
+    box-shadow:
+      inset 2px 2px 4px rgba(150, 165, 185, 0.35),
+      inset -2px -2px 4px rgba(255, 255, 255, 0.9);
+    color: #1e3a5f;
+  }
+
+  .clay-status-tamu {
+    background-color: #ede4fa;
+    box-shadow:
+      inset 2px 2px 4px rgba(160, 135, 195, 0.3),
+      inset -2px -2px 4px rgba(255, 255, 255, 0.9);
+    color: #4a1d88;
+  }
+
+  /* Button States */
+  .clay-btn {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .clay-btn:hover {
+    transform: translateY(-2px);
+  }
+  .clay-btn:active {
+    transform: translateY(1px);
+  }
+
+  /* Sidebar Helper */
+  #sidebar.is-expanded .sidebar-tooltip {
+    display: none !important;
+  }
+
+  #sidebar.is-expanded .sidebar-profile-card {
+    border-color: rgba(203, 213, 225, 0.8) !important;
+    background-color: rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+    justify-content: space-between !important;
+  }
+
+  /* ==========================================
+     SIDEBAR LOGO & TEXT ALIGNMENT FIX
+     ========================================== */
+
+  /* Default / Collapsed State (w-20) */
+  .sidebar-text-animated {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+  }
+
+  #sidebar:not(.is-expanded) .sidebar-logo-wrap {
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  #sidebar:not(.is-expanded) .sidebar-nav-item {
+    justify-content: center !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #sidebar:not(.is-expanded) .sidebar-nav-item:hover .nav-tooltip {
+    opacity: 1 !important;
+  }
+
+  #sidebar:not(.is-expanded) .sidebar-text-animated {
+    display: none !important;
+  }
+
+  /* Expanded State (is-expanded / w-64) */
+  #sidebar.is-expanded .sidebar-logo-wrap {
+    justify-content: flex-start !important;
+    padding-left: 0.25rem !important; /* Presisi lurus dengan lingkaran ikon menu */
+  }
+
+  #sidebar.is-expanded .sidebar-text-animated {
+    display: flex;
+    opacity: 1;
+    transition: opacity 0.2s ease 0.2s; /* Delay agar container mekar dulu baru teks memudar muncul */
+  }
+
+  span.sidebar-text-animated {
+    display: none;
+  }
+
+  #sidebar.is-expanded span.sidebar-text-animated {
+    display: inline-block;
+  }
+
+  /* ==========================================
+     OPTIMIZED DARK MODE CLAYMORPHISM
+     ========================================== */
+
+  .dark .clay-card {
+    background-color: #16202e;
+    box-shadow:
+      8px 12px 24px -4px rgba(7, 10, 15, 0.7),
+      -4px -4px 12px 0px rgba(255, 255, 255, 0.02);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 1px solid rgba(255, 255, 255, 0.03);
+  }
+
+  .dark .clay-inset {
+    background-color: #111823;
+    box-shadow:
+      inset 3px 3px 6px rgba(5, 8, 13, 0.8),
+      inset -2px -2px 5px rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+  }
+
+  .dark .clay-inset input,
+  .dark .clay-inset select,
+  .dark .clay-inset textarea {
+    color: #f1f5f9;
+  }
+
+  .dark .clay-inset input::placeholder,
+  .dark .clay-inset textarea::placeholder {
+    color: #64748b;
+  }
+
+  /* Block Gradients & Badges (Dark Mode Smooth) */
+  .dark .clay-block-mint {
+    background: linear-gradient(180deg, #153a2b 0%, #0e291e 100%);
+    box-shadow: 0 10px 20px -4px rgba(10, 30, 20, 0.6);
+    border-top: 1px solid rgba(167, 243, 208, 0.2);
+    color: #6ee7b7;
+  }
+
+  .dark .clay-block-amber {
+    background: linear-gradient(180deg, #3d2e13 0%, #291e0a 100%);
+    box-shadow: 0 10px 20px -4px rgba(30, 20, 5, 0.6);
+    border-top: 1px solid rgba(253, 230, 138, 0.2);
+    color: #fde047;
+  }
+
+  .dark .clay-block-sky {
+    background: linear-gradient(180deg, #132e45 0%, #0c2032 100%);
+    box-shadow: 0 10px 20px -4px rgba(8, 20, 35, 0.6);
+    border-top: 1px solid rgba(186, 230, 253, 0.2);
+    color: #7dd3fc;
+  }
+
+  .dark .clay-block-alpha {
+    background: linear-gradient(180deg, #3f1920 0%, #2b0f15 100%);
+    box-shadow: 0 10px 20px -4px rgba(30, 10, 15, 0.6);
+    border-top: 1px solid rgba(254, 202, 202, 0.2);
+    color: #fca5a5;
+  }
+
+  .dark .clay-block-ocean {
+    background: linear-gradient(180deg, #2b76b9 0%, #1b5285 100%);
+    box-shadow: 0 10px 22px -4px rgba(15, 45, 75, 0.7);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+  }
+
+  /* Status Badges Inset Dark */
+  .dark .clay-status-tetap {
+    background-color: #111823;
+    color: #93c5fd;
+    box-shadow:
+      inset 2px 2px 4px rgba(5, 8, 13, 0.7),
+      inset -1px -1px 3px rgba(255, 255, 255, 0.03);
+  }
+
+  .dark .clay-status-tamu {
+    background-color: #1e172e;
+    color: #c084fc;
+    box-shadow:
+      inset 2px 2px 4px rgba(10, 5, 20, 0.7),
+      inset -1px -1px 3px rgba(255, 255, 255, 0.03);
+  }
+
+  /* Typography & Border Overrides */
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4 {
+    color: #f8fafc;
+  }
+  .dark .text-slate-800 {
+    color: #f1f5f9;
+  }
+  .dark .text-slate-700,
+  .dark .text-slate-600 {
+    color: #cbd5e1;
+  }
+  .dark .text-slate-500,
+  .dark .text-slate-400 {
+    color: #94a3b8;
+  }
+  .dark .border-slate-200,
+  .dark .border-slate-300 {
+    border-color: #243144;
+  }
+
+  /* Sidebar Expansion Helper (Dark Mode Spesifik) */
+  .dark #sidebar.is-expanded .sidebar-profile-card {
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    background-color: rgba(15, 22, 32, 0.5) !important;
+    box-shadow: inset 1px 1px 3px 0 rgba(0, 0, 0, 0.4) !important;
+  }
+
+  /* Grid Columns Support */
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ==========================================
+   CROSS-DOCUMENT VIEW TRANSITIONS API
+   Tujuan (R-19): orientasi saat pindah halaman full-reload,
+   kurangi flash putih dan lompatan mendadak. Bukan dekorasi.
+   ========================================== */
+@view-transition {
+  navigation: auto;
+}
+
+#sidebar {
+  view-transition-name: main-sidebar;
+}
+
+main {
+  view-transition-name: main-content;
+}
+
+::view-transition-old(main-content) {
+  animation: 220ms cubic-bezier(0.22, 0.61, 0.36, 1) both vt-fade-out;
+}
+
+::view-transition-new(main-content) {
+  animation: 300ms cubic-bezier(0.22, 0.61, 0.36, 1) both vt-fade-in;
+}
+
+@keyframes vt-fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.995);
+  }
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================
+   FALLBACK TRANSISI (browser tanpa View Transitions)
+   Kartu masuk bertahap + fade keluar + progress bar.
+   Aman tanpa JS: keadaan awal tetap terlihat.
+   ========================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+main,
+aside {
+  transition: opacity 0.18s ease;
+}
+
+body.page-leave main,
+body.page-leave aside {
+  opacity: 0;
+}
+
+body.has-reveal .reveal {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+body.reveal-on .reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+#page-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, #2b76b9, #38bdf8);
+  border-radius: 0 999px 999px 0;
+  box-shadow: 0 1px 8px rgba(43, 118, 185, 0.5);
+  opacity: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+#page-progress.is-active {
+  opacity: 1;
+  transform: scaleX(0.85);
+  transition:
+    transform 1.2s ease,
+    opacity 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  ::view-transition-old(main-content),
+  ::view-transition-new(main-content) {
+    animation: none;
+  }
+
+  body.has-reveal .reveal,
+  body.reveal-on .reveal,
+  body.page-leave main,
+  body.page-leave aside,
+  #page-progress {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
